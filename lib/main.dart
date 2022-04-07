@@ -1,115 +1,181 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:dmts/themes/primary_swatch.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+import 'package:dmts/homepage.dart';
+
+// import 'login_screen.dart';
 
 void main() {
-  runApp(const MyApp());
+  SystemChrome.setSystemUIOverlayStyle(
+    SystemUiOverlayStyle(
+      systemNavigationBarColor:
+          SystemUiOverlayStyle.dark.systemNavigationBarColor,
+    ),
+  );
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+    [
+      DeviceOrientation.portraitUp,
+      DeviceOrientation.portraitDown,
+    ],
+  ).then((val) {
+    runApp(const MyApp());
+  });
 }
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      color: const Color(0xFF004B23),
+      title: 'D M T S',
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // Try running your application with "flutter run". You'll see the
-        // application has a blue toolbar. Then, without quitting the app, try
-        // changing the primarySwatch below to Colors.green and then invoke
-        // "hot reload" (press "r" in the console where you ran "flutter run",
-        // or simply save your changes to "hot reload" in a Flutter IDE).
-        // Notice that the counter didn't reset back to zero; the application
-        // is not restarted.
-        primarySwatch: Colors.blue,
+        textSelectionTheme:
+            const TextSelectionThemeData(cursorColor: Colors.white),
+        // fontFamily: 'SourceSansPro',
+        textTheme: TextTheme(
+          headline3: const TextStyle(
+            fontFamily: 'OpenSans',
+            fontSize: 45.0,
+            // fontWeight: FontWeight.w400,
+            color: Colors.orange,
+          ),
+          button: const TextStyle(
+            // OpenSans is similar to NotoSans but the uppercases look a bit better IMO
+            fontFamily: 'OpenSans',
+          ),
+          caption: TextStyle(
+            fontFamily: 'NotoSans',
+            fontSize: 12.0,
+            fontWeight: FontWeight.normal,
+            color: Colors.deepPurple[300],
+          ),
+          headline1: const TextStyle(fontFamily: 'Quicksand'),
+          headline2: const TextStyle(fontFamily: 'Quicksand'),
+          headline4: const TextStyle(fontFamily: 'Quicksand'),
+          headline5: const TextStyle(fontFamily: 'NotoSans'),
+          headline6: const TextStyle(fontFamily: 'NotoSans'),
+          subtitle1: const TextStyle(fontFamily: 'NotoSans'),
+          bodyText1: const TextStyle(fontFamily: 'NotoSans'),
+          bodyText2: const TextStyle(fontFamily: 'NotoSans'),
+          subtitle2: const TextStyle(fontFamily: 'NotoSans'),
+          overline: const TextStyle(fontFamily: 'NotoSans'),
+        ),
+        colorScheme: ColorScheme.fromSwatch(
+                primarySwatch: MaterialColor(0xFF004B23, color))
+            .copyWith(secondary: Colors.white),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      debugShowCheckedModeBanner: false,
+      home: AnimatedSplashScreen(
+          // centered: false,
+          splashIconSize: double.maxFinite,
+          duration: 000,
+          splash: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              SizedBox(
+                child: TextLiquidFill(
+                  text: 'DMTS',
+                  waveColor: Colors.white,
+                  boxBackgroundColor: const Color(0xFF004B23),
+                  textStyle: const TextStyle(fontSize: 45.0, letterSpacing: 10),
+                ),
+              ),
+              const SizedBox(
+                height: 50.0,
+              ),
+              Image.asset(
+                "assets/logo.png",
+                // fit: BoxFit.cover,
+                height: 50.0,
+                width: 50.0,
+                // alignment: Alignment.center,
+              ),
+            ],
+          ),
+          nextScreen: NavigationBar(),
+          splashTransition: SplashTransition.fadeTransition,
+          backgroundColor: const Color(0xFF004B23)),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
-
+class NavigationBar extends StatefulWidget {
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<NavigationBar> createState() => _NavigationBarState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _NavigationBarState extends State<NavigationBar> {
+  // final GlobalKey<FabCircularMenuState> fabKey = GlobalKey();
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
-  }
+  // final PersistentTabController _controller =
+  //     PersistentTabController(initialIndex: 0);
+
+  double heightFrame = 0.0;
+  double widthFrame = 0.0;
+  //List<String> _titles = ["Home", "Profile", "Shop"];
+  List<Widget> _items = [
+    HomePage(),
+    HomePage(),
+    HomePage(),
+    HomePage(),
+  ];
+  int _selectedIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    heightFrame = MediaQuery.of(context).size.height;
+
+    widthFrame = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
-      ),
       body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
-        child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Invoke "debug painting" (press "p" in the console, choose the
-          // "Toggle Debug Paint" action from the Flutter Inspector in Android
-          // Studio, or the "Toggle Debug Paint" command in Visual Studio Code)
-          // to see the wireframe for each widget.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
-      ), // This trailing comma makes auto-formatting nicer for build methods.
+          child: IndexedStack(
+              index: _selectedIndex,
+              children: _items) //_items.elementAt(_index),
+          ),
+      bottomNavigationBar: _showBottomNav(),
     );
+  }
+
+  Widget _showBottomNav()
+  {
+    return BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.account_circle),
+            label: 'Profile',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Shop',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.shopping_bag),
+            label: 'Shop',
+          ),
+        ],
+      currentIndex: _selectedIndex,
+      selectedItemColor: const Color(0xFF004B23),
+      unselectedItemColor: Colors.grey,
+      selectedFontSize:12.0,
+      unselectedFontSize: 14.0,
+      onTap: _onTap,
+    );
+  }
+ 
+  void _onTap(int index)
+  {
+    _selectedIndex = index;
+    setState(() {
+ 
+    });
   }
 }
