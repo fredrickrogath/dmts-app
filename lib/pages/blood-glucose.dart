@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
+import 'package:getwidget/getwidget.dart';
 
 class BloodGlucose extends StatefulWidget {
   BloodGlucose({Key? key}) : super(key: key);
@@ -11,6 +12,11 @@ class BloodGlucose extends StatefulWidget {
 class _BloodGlucoseState extends State<BloodGlucose> {
   bool hideForm = false;
   String dropdownvalue = 'Before Breakfast';
+  bool isChecked1 = false;
+  bool isChecked2 = false;
+  bool isChecked3 = false;
+  bool isChecked4 = false;
+  bool isChecked5 = false;
 
   // List of items in our dropdown menu
   var items = [
@@ -39,14 +45,20 @@ class _BloodGlucoseState extends State<BloodGlucose> {
             ])
           : SingleChildScrollView(
               child: Column(children: [
-                Row(mainAxisAlignment: MainAxisAlignment.end,children: [Padding(
-                  padding: const EdgeInsets.only(right:8.0),
-                  child: OutlinedButton(
-  // style: outlineButtonStyle,
-  onPressed: () { },
-  child: Text('Submit', style:TextStyle(color:const Color(0xFF004B23))),
-),
-                )],),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(right: 8.0),
+                      child: OutlinedButton(
+                        // style: outlineButtonStyle,
+                        onPressed: () {},
+                        child: const Text('Submit',
+                            style: TextStyle(color: Color(0xFF004B23))),
+                      ),
+                    )
+                  ],
+                ),
                 // SizedBox(height: MediaQuery.of(context).size.height / 50),
                 Padding(
                   padding: const EdgeInsets.only(
@@ -62,7 +74,7 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                             suffix: Text('mmol/L'),
                             focusedBorder: UnderlineInputBorder(
                               borderSide: BorderSide(
-                                  color: Color(0xFF0096C7), width: 2.0),
+                                  color: Color(0xFF004B23), width: 2.0),
                             ),
                             border: UnderlineInputBorder(),
                             hintText: 'Sugar Concentration',
@@ -74,7 +86,8 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                           width: MediaQuery.of(context).size.width / 1.0,
                           height: MediaQuery.of(context).size.height / 17,
                           child: DropdownButton(
-                            style: TextStyle(color: Colors.grey[600], fontSize: 16),
+                            style: TextStyle(
+                                color: Colors.grey[600], fontSize: 16),
                             // Initial Value
                             value: dropdownvalue,
 
@@ -97,53 +110,18 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                             },
                           ),
                         ),
-                        // SizedBox(
-                        //     height: MediaQuery.of(context).size.height / 40),
-                        // TextField(
-                        //   textAlign: TextAlign.right,
-                        //   style: const TextStyle(fontSize: 16.0),
-                        //   // controller:
-                        //   // dateStart, //editing controller of this TextField
-                        //   decoration: const InputDecoration(
-                        //       suffixIcon: Icon(Icons.calendar_today),
-                        //       labelText: "Event Date" //label text of field
-                        //       ),
-                        //   readOnly:
-                        //       true, //set it true, so that user will not able to edit text
-                        //   onTap: () async {
-                        //     DateTime? pickedDate = await showDatePicker(
-                        //         context: context,
-                        //         initialDate: DateTime.now(),
-                        //         firstDate: DateTime(
-                        //             2000), //DateTime.now() - not to allow to choose before today.
-                        //         lastDate: DateTime(2101));
 
-                        //     if (pickedDate != null) {
-                        //       // print(
-                        //       //     pickedDate); //pickedDate output format => 2021-03-10 00:00:00.000
-                        //       // String formattedDate =
-                        //       //     DateFormat('yyyy-MM-dd').format(pickedDate);
-                        //       // print(
-                        //       //     formattedDate); //formatted date output using intl package =>  2021-03-16
-                        //       //you can implement different kind of Date Format here according to your requirement
-
-                        //       // setState(() {
-                        //       //   dateStart.text =
-                        //       //       formattedDate; //set output date to TextField value.
-                        //       // });
-                        //     } else {
-                        //       print("Date is not selected");
-                        //     }
-                        //   },
-                        // ),
                         SizedBox(
                             height: MediaQuery.of(context).size.height / 40),
                         TextFormField(
                           textAlign: TextAlign.start,
                           decoration: const InputDecoration(
+                            focusedBorder: UnderlineInputBorder(
+                              borderSide: BorderSide(
+                                  color: Color(0xFF004B23), width: 2.0),
+                            ),
+                            border: UnderlineInputBorder(),
                             hintText: "Note",
-                            fillColor: Colors.white24,
-                            filled: true,
                           ),
                           minLines:
                               6, // any number you need (It works as the rows for the textarea)
@@ -156,7 +134,110 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                     ),
                   ),
                 ),
-                // SizedBox(height: MediaQuery.of(context).size.height / 50),
+
+                GFCard(
+                  content: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GFCheckbox(
+                              size: GFSize.SMALL,
+                              activeBgColor: GFColors.SUCCESS,
+                              type: GFCheckboxType.circle,
+                              onChanged: (value) {
+                                setState(() {
+                                  isChecked1 = value;
+                                });
+                              },
+                              value: isChecked1,
+                              inactiveIcon: null,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Text('Wounds that takes time to heal'),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GFCheckbox(
+                              size: GFSize.SMALL,
+                              activeBgColor: GFColors.SUCCESS,
+                              type: GFCheckboxType.circle,
+                              onChanged: (value) {
+                                setState(() {
+                                  isChecked2 = value;
+                                });
+                              },
+                              value: isChecked2,
+                              inactiveIcon: null,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Text('Blur vision'),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GFCheckbox(
+                              size: GFSize.SMALL,
+                              activeBgColor: GFColors.SUCCESS,
+                              type: GFCheckboxType.circle,
+                              onChanged: (value) {
+                                setState(() {
+                                  isChecked3 = value;
+                                });
+                              },
+                              value: isChecked3,
+                              inactiveIcon: null,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Text('Virginal itching'),
+                            )
+                          ],
+                        ),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            GFCheckbox(
+                              size: GFSize.SMALL,
+                              activeBgColor: GFColors.SUCCESS,
+                              type: GFCheckboxType.circle,
+                              onChanged: (value) {
+                                setState(() {
+                                  isChecked4 = value;
+                                });
+                              },
+                              value: isChecked4,
+                              inactiveIcon: null,
+                            ),
+                            const Padding(
+                              padding: EdgeInsets.symmetric(horizontal: 20.0),
+                              child: Text('Feeling numb'),
+                            )
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
               ]),
             ),
     );

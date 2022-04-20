@@ -47,6 +47,7 @@ dependencies:
   fab_circular_menu: ^1.0.2
   adaptive_theme: ^2.3.1
   font_awesome_flutter: ^10.1.0
+  getwidget: ^2.0.5
 
 
 
