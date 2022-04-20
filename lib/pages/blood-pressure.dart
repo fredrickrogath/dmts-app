@@ -17,7 +17,7 @@ class _BloodPressureState extends State<BloodPressure> {
           Row(
               mainAxisAlignment: MainAxisAlignment.end,
               children: const[Padding(
-                padding: const EdgeInsets.all(8.0),
+                padding: EdgeInsets.all(8.0),
                 child: Text('Total records 0'),
               )]),
           Lottie.asset('assets/boodpressure.json')
