@@ -1,6 +1,7 @@
 import 'package:dmts/health-history.dart';
 import 'package:dmts/homepage.dart';
 import 'package:dmts/kidney-ability.dart';
+import 'package:dmts/themes/primary_swatch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
           return MaterialApp(
             debugShowCheckedModeBanner: false,
             themeMode: isDark ? ThemeMode.dark : ThemeMode.light,
-            theme: ThemeData(primaryColor: Colors.blue),
+            theme: ThemeData(primaryColor: MaterialColor(0xFF004B23, color)),
             darkTheme: ThemeData.dark(),
             home: const MyHomePage(
               title: 'Reward Shidende',
@@ -54,34 +55,6 @@ class _MyHomePageState extends State<MyHomePage> {
   bool isScrollingDown = false;
   bool _show = true;
   double bottomBarHeight = 50; // set bottom bar height
-  // String _scanBarcode = 'Unknown';
-  // final double _bottomBarOffset = 0;
-  // final double _iconSize = 20;
-
-  // int _selectedIndex = 0;
-  // static const TextStyle optionStyle =
-  //     TextStyle(fontSize: 30, fontWeight: FontWeight.w100);
-
-  // static const List<Widget> _widgetOptions = <Widget>[
-  //   Text(
-  //     'Index 0: Home',
-  //     style: optionStyle,
-  //   ),
-  //   Text(
-  //     'Index 1: Business',
-  //     style: optionStyle,
-  //   ),
-  //   Text(
-  //     'Index 2: School',
-  //     style: optionStyle,
-  //   ),
-  // ];
-
-  // void _onItemTapped(int index) {
-  //   setState(() {
-  //     _selectedIndex = index;
-  //   });
-  // }
 
   setDarkMode(value) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
