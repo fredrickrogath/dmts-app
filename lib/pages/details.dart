@@ -81,7 +81,7 @@ class Details extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) =>const BloodPressure()),
+                              builder: (context) => BloodPressure()),
                         );
                     
                   },child: Lottie.asset('assets/boodpressure.json')),

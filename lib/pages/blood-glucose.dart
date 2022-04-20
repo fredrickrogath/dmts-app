@@ -10,7 +10,7 @@ class BloodGlucose extends StatefulWidget {
 }
 
 class _BloodGlucoseState extends State<BloodGlucose> {
-  bool hideForm = false;
+  bool hideForm = true;
   String dropdownvalue = 'Before Breakfast';
   bool isChecked1 = false;
   bool isChecked2 = false;
@@ -31,7 +31,14 @@ class _BloodGlucoseState extends State<BloodGlucose> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xFF004B23),
-        actions: [IconButton(onPressed: () {}, icon: const Icon(Icons.add))],
+        actions: [
+          IconButton(
+              onPressed: () {
+                hideForm = !hideForm;
+                setState(() {});
+              },
+              icon: const Icon(Icons.add))
+        ],
       ),
       body: hideForm
           ? Column(children: [
@@ -135,6 +142,11 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                   ),
                 ),
 
+                const Center(
+                  child: Text('Experiencing any of the following ?',
+                      style: TextStyle(fontSize: 16)),
+                ),
+
                 GFCard(
                   content: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
@@ -158,7 +170,8 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Text('Wounds that takes time to heal'),
+                              child: Text('Wounds that takes time to heal.',
+                                  style: TextStyle(fontSize: 15)),
                             )
                           ],
                         ),
@@ -182,7 +195,8 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Text('Blur vision'),
+                              child: Text('Blur vision.',
+                                  style: TextStyle(fontSize: 15)),
                             )
                           ],
                         ),
@@ -206,7 +220,8 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Text('Virginal itching'),
+                              child: Text('Virginal itching.',
+                                  style: TextStyle(fontSize: 15)),
                             )
                           ],
                         ),
@@ -230,7 +245,8 @@ class _BloodGlucoseState extends State<BloodGlucose> {
                             ),
                             const Padding(
                               padding: EdgeInsets.symmetric(horizontal: 20.0),
-                              child: Text('Feeling numb'),
+                              child: Text('Feeling numb.',
+                                  style: TextStyle(fontSize: 15)),
                             )
                           ],
                         ),
