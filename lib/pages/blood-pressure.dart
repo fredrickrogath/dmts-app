@@ -81,12 +81,12 @@ class _BloodPressureState extends State<BloodPressure> {
                                   color: Color(0xFF004B23), width: 2.0),
                             ),
                             border: UnderlineInputBorder(),
-                            hintText: 'Sugar Concentration',
+                            hintText: 'Blood pressure',
                           ),
                         ),
                         SizedBox(
                             height: MediaQuery.of(context).size.height / 40),
-                            const TextField(
+                        const TextField(
                           decoration: InputDecoration(
                             suffix: Text('mm Hg'),
                             focusedBorder: UnderlineInputBorder(
