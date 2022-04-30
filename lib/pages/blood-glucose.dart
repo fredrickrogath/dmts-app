@@ -3,7 +3,7 @@ import 'package:lottie/lottie.dart';
 import 'package:getwidget/getwidget.dart';
 
 class BloodGlucose extends StatefulWidget {
-  BloodGlucose({Key? key}) : super(key: key);
+  const BloodGlucose({Key? key}) : super(key: key);
 
   @override
   State<BloodGlucose> createState() => _BloodGlucoseState();
