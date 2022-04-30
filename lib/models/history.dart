@@ -1,24 +1,9 @@
-// class History {
-//   final int? id;
-//   var count = 0;
-//   final double sale_price;
-//   final String image_path, name, category;
+import 'package:flutter/material.dart';
 
-//   int? get getId => id;
-//   int get getCount => count;
-//   String get getName => name;
-//   String get getCategory => category;
-//   double get getSalePrice => sale_price;
-//   String get getImagePath => image_path;
+class Element {
+  DateTime date;
+  String name;
+  IconData icon;
 
-
-//    Cart({
-//     this.id,
-//     required this.name,
-//     required this.count,
-//     required this.category,
-//     required this.image_path,
-//     required this.sale_price,
-//   });
-
-// }
+  Element(this.date, this.name, this.icon);
+}

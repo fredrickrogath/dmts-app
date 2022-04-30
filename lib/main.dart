@@ -63,7 +63,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   getdarkMode() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
-    darkNotifier.value = prefs.getBool('darkMode')?? false;
+    darkNotifier.value = prefs.getBool('darkMode') ?? false;
   }
 
   void showBottomBar() {
@@ -112,7 +112,6 @@ class _MyHomePageState extends State<MyHomePage> {
     darkNotifier.dispose();
     super.dispose();
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -202,14 +201,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(),
                 preferredSize: const Size(0.0, 0.0),
               ),
-        body: const TabBarView(
-          physics: AlwaysScrollableScrollPhysics(
+        body: TabBarView(
+          physics: const AlwaysScrollableScrollPhysics(
               parent: BouncingScrollPhysics()),
           children: [
-            HomePage(),
+            const HomePage(),
             // HomePage(),
             HealthHistory(),
-            KidneyAbility(),
+            const KidneyAbility(),
           ],
         ),
         // floatingActionButton: _show
@@ -315,7 +314,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //                 icon: const Icon(CupertinoIcons.barcode_viewfinder),
   //                 color: Colors.grey,
   //                 onPressed: () {
-                   
+
   //                 },
   //               ),
   //             ],
@@ -377,7 +376,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //                 icon: const Icon(CupertinoIcons.barcode_viewfinder),
   //                 color: Colors.grey,
   //                 onPressed: () {
-                  
+
   //                 },
   //               ),
   //             ],
@@ -439,7 +438,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //                 icon: const Icon(CupertinoIcons.barcode_viewfinder),
   //                 color: Colors.grey,
   //                 onPressed: () {
-                   
+
   //                 },
   //               ),
   //             ],
@@ -502,7 +501,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //                   icon: const Icon(CupertinoIcons.barcode_viewfinder),
   //                   color: Colors.grey,
   //                   onPressed: () {
-                     
+
   //                   },
   //                 ),
   //               ],
@@ -601,7 +600,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   // Widget unitsTab() => Stack(
   //       children: [
-  //         Container( 
+  //         Container(
   //           margin: const EdgeInsets.only(top: 98.0),
   //           child: ListView.builder(
   //               controller: _scrollBottomBarController,
@@ -675,7 +674,7 @@ class _MyHomePageState extends State<MyHomePage> {
   //                   icon: const Icon(CupertinoIcons.barcode_viewfinder),
   //                   color: Colors.grey,
   //                   onPressed: () {
-                      
+
   //                   },
   //                 ),
   //               ],
