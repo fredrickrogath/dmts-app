@@ -112,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          const Text('Alerts'),
+                          const Text('Tips'),
                           Padding(
                             padding: const EdgeInsets.only(left: 8.0),
                             child: ClipRRect(

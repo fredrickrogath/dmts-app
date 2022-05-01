@@ -70,7 +70,7 @@ class Report extends StatelessWidget {
   Widget build(BuildContext context) {
     const cutOffYValue = 5.0;
     return DefaultTabController(
-      length: 4,
+      length: 3,
       child: Scaffold(
         appBar: AppBar(
           // toolbarHeight: 80.0,
@@ -91,29 +91,120 @@ class Report extends StatelessWidget {
                         child: Text('Monthly'),
                       ),
                       Tab(
-                        child: Text('Monthly'),
-                      ),
-                      Tab(
                         child: Text('Yearly'),
                       ),
                     ]),
               ),
               preferredSize: const Size.fromHeight(30.0)),
         ),
-        body: const TabBarView(
+        body: TabBarView(
           physics:
               AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
           children: [
-            Text('hello'),
-            Text('hello'),
-            Text('hello'),
-            Text('hello'),
+            buildWeekly(cutOffYValue),
+            buildWeekly(cutOffYValue),
+            buildWeekly(cutOffYValue),
           ],
         ),
       ),
     );
   }
+
+  Widget buildWeekly(cutOffYValue) => Padding(
+        padding: const EdgeInsets.only(top: 18.0),
+        child: AspectRatio(
+          aspectRatio: 3.4,
+          child: Padding(
+            padding: const EdgeInsets.only(left: 12, right: 24),
+            child: LineChart(
+              LineChartData(
+                lineTouchData: LineTouchData(enabled: false),
+                lineBarsData: [
+                  LineChartBarData(
+                    spots: const [
+                      FlSpot(0, 4),
+                      FlSpot(1, 3.5),
+                      FlSpot(2, 4.5),
+                      FlSpot(3, 1),
+                      FlSpot(4, 4),
+                      FlSpot(5, 6),
+                      FlSpot(6, 6.5),
+                      FlSpot(7, 6),
+                      FlSpot(8, 4),
+                      FlSpot(9, 6),
+                      FlSpot(10, 6),
+                      FlSpot(11, 7),
+                    ],
+                    isCurved: true,
+                    barWidth: 8,
+                    color: Colors.purpleAccent,
+                    belowBarData: BarAreaData(
+                      show: true,
+                      color: Colors.deepPurple.withOpacity(0.4),
+                      cutOffY: cutOffYValue,
+                      applyCutOffY: true,
+                    ),
+                    aboveBarData: BarAreaData(
+                      show: true,
+                      color: Colors.orange.withOpacity(0.6),
+                      cutOffY: cutOffYValue,
+                      applyCutOffY: true,
+                    ),
+                    dotData: FlDotData(
+                      show: false,
+                    ),
+                  ),
+                ],
+                minY: 0,
+                titlesData: FlTitlesData(
+                  show: true,
+                  topTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
+                  rightTitles: AxisTitles(
+                    sideTitles: SideTitles(showTitles: false),
+                  ),
+                  bottomTitles: AxisTitles(
+                    axisNameWidget: const Text(
+                      '2022',
+                      style: _dateTextStyle,
+                    ),
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      reservedSize: 18,
+                      interval: 1,
+                      getTitlesWidget: bottomTitleWidgets,
+                    ),
+                  ),
+                  leftTitles: AxisTitles(
+                    axisNameSize: 20,
+                    axisNameWidget: const Padding(
+                      padding: EdgeInsets.only(bottom: 8.0),
+                      child: Text('Blood Pressure mmHg'),
+                    ),
+                    sideTitles: SideTitles(
+                      showTitles: true,
+                      interval: 1,
+                      reservedSize: 40,
+                      getTitlesWidget: leftTitleWidgets,
+                    ),
+                  ),
+                ),
+                gridData: FlGridData(
+                  show: true,
+                  drawVerticalLine: false,
+                  horizontalInterval: 1,
+                  checkToShowHorizontalLine: (double value) {
+                    return value == 1 || value == 6 || value == 4 || value == 5;
+                  },
+                ),
+              ),
+            ),
+          ),
+        ),
+      );
 }
+
 
     
     //  Scaffold(
@@ -121,99 +212,7 @@ class Report extends StatelessWidget {
     //     backgroundColor: const Color(0xFF004B23),
     //   ),
     //   body: 
-    //   Padding(
-    //     padding: const EdgeInsets.only(top: 18.0),
-    //     child: AspectRatio(
-    //       aspectRatio: 2.0,
-    //       child: Padding(
-    //         padding: const EdgeInsets.only(left: 12, right: 24),
-    //         child: LineChart(
-    //           LineChartData(
-    //             lineTouchData: LineTouchData(enabled: false),
-    //             lineBarsData: [
-    //               LineChartBarData(
-    //                 spots: const [
-    //                   FlSpot(0, 4),
-    //                   FlSpot(1, 3.5),
-    //                   FlSpot(2, 4.5),
-    //                   FlSpot(3, 1),
-    //                   FlSpot(4, 4),
-    //                   FlSpot(5, 6),
-    //                   FlSpot(6, 6.5),
-    //                   FlSpot(7, 6),
-    //                   FlSpot(8, 4),
-    //                   FlSpot(9, 6),
-    //                   FlSpot(10, 6),
-    //                   FlSpot(11, 7),
-    //                 ],
-    //                 isCurved: true,
-    //                 barWidth: 8,
-    //                 color: Colors.purpleAccent,
-    //                 belowBarData: BarAreaData(
-    //                   show: true,
-    //                   color: Colors.deepPurple.withOpacity(0.4),
-    //                   cutOffY: cutOffYValue,
-    //                   applyCutOffY: true,
-    //                 ),
-    //                 aboveBarData: BarAreaData(
-    //                   show: true,
-    //                   color: Colors.orange.withOpacity(0.6),
-    //                   cutOffY: cutOffYValue,
-    //                   applyCutOffY: true,
-    //                 ),
-    //                 dotData: FlDotData(
-    //                   show: false,
-    //                 ),
-    //               ),
-    //             ],
-    //             minY: 0,
-    //             titlesData: FlTitlesData(
-    //               show: true,
-    //               topTitles: AxisTitles(
-    //                 sideTitles: SideTitles(showTitles: false),
-    //               ),
-    //               rightTitles: AxisTitles(
-    //                 sideTitles: SideTitles(showTitles: false),
-    //               ),
-    //               bottomTitles: AxisTitles(
-    //                 axisNameWidget: const Text(
-    //                   '2022',
-    //                   style: _dateTextStyle,
-    //                 ),
-    //                 sideTitles: SideTitles(
-    //                   showTitles: true,
-    //                   reservedSize: 18,
-    //                   interval: 1,
-    //                   getTitlesWidget: bottomTitleWidgets,
-    //                 ),
-    //               ),
-    //               leftTitles: AxisTitles(
-    //                 axisNameSize: 20,
-    //                 axisNameWidget: const Padding(
-    //                   padding: EdgeInsets.only(bottom: 8.0),
-    //                   child: Text('Blood Pressure mmHg'),
-    //                 ),
-    //                 sideTitles: SideTitles(
-    //                   showTitles: true,
-    //                   interval: 1,
-    //                   reservedSize: 40,
-    //                   getTitlesWidget: leftTitleWidgets,
-    //                 ),
-    //               ),
-    //             ),
-    //             gridData: FlGridData(
-    //               show: true,
-    //               drawVerticalLine: false,
-    //               horizontalInterval: 1,
-    //               checkToShowHorizontalLine: (double value) {
-    //                 return value == 1 || value == 6 || value == 4 || value == 5;
-    //               },
-    //             ),
-    //           ),
-    //         ),
-    //       ),
-    //     ),
-    //   ),
+     
     // );
   // }
 // }
