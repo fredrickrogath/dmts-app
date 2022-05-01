@@ -1,5 +1,6 @@
 // import 'package:animations/animations.dart';
 import 'package:dmts/pages/details.dart';
+import 'package:dmts/pages/tips.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -91,7 +92,13 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                 child: Column(children: [
                   GestureDetector(
-                      onTap: () {}, child: Lottie.asset('assets/tips.json')),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Tips()),
+                        );
+                      }, child: Lottie.asset('assets/tips.json')),
                   const Padding(
                     padding: EdgeInsets.only(top: 8.0),
                     child: Text('Tips'),
