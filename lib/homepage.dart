@@ -2,6 +2,7 @@
 import 'package:dmts/pages/alerts.dart';
 import 'package:dmts/pages/details.dart';
 import 'package:dmts/pages/report.dart';
+import 'package:dmts/pages/suggestions.dart';
 import 'package:dmts/pages/tips.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -80,7 +81,12 @@ class _HomePageState extends State<HomePage> {
                 child: Column(
                   children: [
                     GestureDetector(
-                        onTap: () {},
+                        onTap: () {
+                          Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => const Suggestions()),
+                        );
+                        },
                         child: Lottie.asset('assets/recommendations.json')),
                     const Padding(
                       padding: EdgeInsets.only(top: 8.0),

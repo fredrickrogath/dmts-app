@@ -52,6 +52,7 @@ dependencies:
   photo_view: ^0.13.0
   fl_chart: ^0.50.1
   card_swiper: ^2.0.3
+  sticky_grouped_list: ^2.1.0
 
 
 
