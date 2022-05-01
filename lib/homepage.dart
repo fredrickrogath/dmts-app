@@ -1,5 +1,7 @@
 // import 'package:animations/animations.dart';
+import 'package:dmts/pages/alerts.dart';
 import 'package:dmts/pages/details.dart';
+import 'package:dmts/pages/report.dart';
 import 'package:dmts/pages/tips.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -62,7 +64,13 @@ class _HomePageState extends State<HomePage> {
               Expanded(
                   child: Column(children: [
                 GestureDetector(
-                    onTap: () {}, child: Lottie.asset('assets/report.json')),
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => const Report()),
+                      );
+                    },
+                    child: Lottie.asset('assets/report.json')),
                 const Padding(
                   padding: EdgeInsets.only(top: 8.0),
                   child: Text('Report'),
@@ -95,25 +103,66 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.push(
                           context,
-                          MaterialPageRoute(
-                              builder: (context) => const Tips()),
+                          MaterialPageRoute(builder: (context) => const Tips()),
                         );
-                      }, child: Lottie.asset('assets/tips.json')),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Text('Tips'),
-                  )
+                      },
+                      child: Lottie.asset('assets/tips.json')),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Alerts'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5.0),
+                              child: Container(
+                                  height: 25,
+                                  width: 40,
+                                  color: const Color(0xFF008000),
+                                  child: const Align(
+                                      alignment: Alignment.center,
+                                      child: Text("8"))),
+                            ),
+                          )
+                        ],
+                      )),
                 ]),
               ),
               Expanded(
                   child: Column(
                 children: [
                   GestureDetector(
-                      onTap: () {}, child: Lottie.asset('assets/alerts.json')),
-                  const Padding(
-                    padding: EdgeInsets.only(top: 8.0),
-                    child: Text('Alerts'),
-                  ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Alerts()),
+                        );
+                      },
+                      child: Lottie.asset('assets/alerts.json')),
+                  Padding(
+                      padding: const EdgeInsets.only(top: 8.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text('Alerts'),
+                          Padding(
+                            padding: const EdgeInsets.only(left: 8.0),
+                            child: ClipRRect(
+                              borderRadius: BorderRadius.circular(5.0),
+                              child: Container(
+                                  height: 25,
+                                  width: 40,
+                                  color: const Color(0xFF008000),
+                                  child: const Align(
+                                      alignment: Alignment.center,
+                                      child: Text("5"))),
+                            ),
+                          )
+                        ],
+                      )),
                 ],
               )
                   // Expanded(
