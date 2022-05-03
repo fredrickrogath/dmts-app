@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
                   GestureDetector(
                       onTap: () {}, child: Lottie.asset('assets/profile.json')),
                   const Padding(
-                    padding: EdgeInsets.only(top: 18.0),
+                    padding: EdgeInsets.only(top: 80.0),
                     child: Text('My profile'),
                   )
                 ]),
