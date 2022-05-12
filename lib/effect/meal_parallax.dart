@@ -1,15 +1,15 @@
 import 'package:dmts/effect/exercise_parallax.dart';
-import 'package:dmts/models/exercise.dart';
+import 'package:dmts/models/meal.dart';
 import 'package:flutter/material.dart';
 
-class Exercise extends StatefulWidget {
-  const Exercise({Key? key}) : super(key: key);
+class Meal extends StatefulWidget {
+  const Meal({Key? key}) : super(key: key);
 
   @override
-  State<Exercise> createState() => _ExerciseState();
+  State<Meal> createState() => _MealState();
 }
 
-class _ExerciseState extends State<Exercise> {
+class _MealState extends State<Meal> {
   Future<void> _refresh() {
     return Future.delayed(const Duration(seconds: 3));
   }
@@ -29,7 +29,7 @@ class _ExerciseState extends State<Exercise> {
               parent: AlwaysScrollableScrollPhysics()),
           child: Column(
             children: [
-              for (final bidha in exercise)
+              for (final bidha in meal)
                 BidhaaList(
                   imageUrl: bidha.picha,
                   kuuzwa: bidha.kuuzwa,
