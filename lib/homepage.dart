@@ -32,7 +32,7 @@ class _HomePageState extends State<HomePage> {
                   GestureDetector(
                       onTap: () {}, child: Lottie.asset('assets/profile.json')),
                   const Padding(
-                    padding: EdgeInsets.only(top: 80.0),
+                    padding: EdgeInsets.only(top: 20.0),
                     child: Text('My profile'),
                   )
                 ]),
@@ -83,9 +83,10 @@ class _HomePageState extends State<HomePage> {
                     GestureDetector(
                         onTap: () {
                           Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => const Suggestions()),
-                        );
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Suggestions()),
+                          );
                         },
                         child: Lottie.asset('assets/recommendations.json')),
                     const Padding(
