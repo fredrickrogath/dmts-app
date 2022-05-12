@@ -1,7 +1,5 @@
 import 'package:animations/animations.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:getwidget/getwidget.dart';
 import 'package:photo_view/photo_view.dart';
 
 class Alerts extends StatefulWidget {

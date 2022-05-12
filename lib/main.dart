@@ -1,6 +1,6 @@
-import 'package:dmts/health-history.dart';
+import 'package:dmts/health_history.dart';
 import 'package:dmts/homepage.dart';
-import 'package:dmts/kidney-ability.dart';
+import 'package:dmts/kidney_ability.dart';
 import 'package:dmts/themes/primary_swatch.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -201,14 +201,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Container(),
                 preferredSize: const Size(0.0, 0.0),
               ),
-        body: TabBarView(
-          physics: const AlwaysScrollableScrollPhysics(
+        body: const TabBarView(
+          physics:  AlwaysScrollableScrollPhysics(
               parent: BouncingScrollPhysics()),
           children: [
-            const HomePage(),
+             HomePage(),
             // HomePage(),
             HealthHistory(),
-            const KidneyAbility(),
+             KidneyAbility(),
           ],
         ),
         // floatingActionButton: _show

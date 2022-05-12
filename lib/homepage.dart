@@ -4,9 +4,7 @@ import 'package:dmts/pages/details.dart';
 import 'package:dmts/pages/report.dart';
 import 'package:dmts/pages/suggestions.dart';
 import 'package:dmts/pages/tips.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:lottie/lottie.dart';
 // import 'package:lottie/lottie.dart';
 

@@ -1,11 +1,8 @@
-import 'dart:ui';
-
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 
 class BidhaaList extends StatefulWidget {
-  BidhaaList({
+  const BidhaaList({
     Key? key,
     required this.imageUrl,
     required this.kuuzwa,
@@ -244,9 +241,9 @@ class ParallaxFlowDelegate extends FlowDelegate {
 }
 
 class Parallax extends SingleChildRenderObjectWidget {
-  Parallax({
+  const Parallax({Key? key, 
     required Widget background,
-  }) : super(child: background);
+  }) : super(key: key, child: background);
 
   @override
   RenderObject createRenderObject(BuildContext context) {
