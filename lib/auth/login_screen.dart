@@ -4,13 +4,15 @@ import 'package:flutter_login/flutter_login.dart';
 import '../homepage.dart';
 
 
-const users = const {
+const users = {
   'shidende@gmail.com': 'shidende',
   'dmts@gmail.com': 'dmts',
 };
 
 class LoginScreen extends StatelessWidget {
-  Duration get loginTime => Duration(milliseconds: 2250);
+  const LoginScreen({Key? key}) : super(key: key);
+
+  Duration get loginTime => const Duration(milliseconds: 2250);
 
   Future<String?> _authUser(LoginData data) {
     debugPrint('Name: ${data.name}, Password: ${data.password}');

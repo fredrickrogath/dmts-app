@@ -32,7 +32,7 @@ class _SuggestionsState extends State<Suggestions>{
           itemComparator: (Element element1, Element element2) =>
               element1.date.compareTo(element2.date),
           floatingHeader: true,
-          groupSeparatorBuilder: (Element element) => Container(
+          groupSeparatorBuilder: (Element element) => SizedBox(
             height: 50,
             child: Align(
               alignment: Alignment.center,
@@ -43,7 +43,7 @@ class _SuggestionsState extends State<Suggestions>{
                   border: Border.all(
                     color: Colors.green[300]!,
                   ),
-                  borderRadius: BorderRadius.all(Radius.circular(20.0)),
+                  borderRadius:const  BorderRadius.all(Radius.circular(20.0)),
                 ),
                 child: Padding(
                   padding: const EdgeInsets.all(8.0),

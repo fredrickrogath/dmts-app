@@ -1,5 +1,5 @@
-import 'package:dmts/pages/blood-glucose.dart';
-import 'package:dmts/pages/blood-pressure.dart';
+import 'package:dmts/pages/blood_glucose.dart';
+import 'package:dmts/pages/blood_pressure.dart';
 import 'package:dmts/pages/exercise.dart';
 import 'package:dmts/pages/meals.dart';
 import 'package:flutter/material.dart';
@@ -41,7 +41,7 @@ class Details extends StatelessWidget {
                           Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => BloodGlucose()),
+                              builder: (context) => const BloodGlucose()),
                         );
                         },
                         child: Lottie.asset('assets/glucometer.json')),
@@ -65,7 +65,7 @@ class Details extends StatelessWidget {
                     Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => Exercise()),
+                              builder: (context) => const Exercise()),
                         );
                     
                   },child: Lottie.asset('assets/exersice.json')),

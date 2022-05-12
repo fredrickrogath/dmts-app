@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:lottie/lottie.dart';
-import 'package:getwidget/getwidget.dart';
 
 class BloodPressure extends StatefulWidget {
-  BloodPressure({Key? key}) : super(key: key);
+  const BloodPressure({Key? key}) : super(key: key);
 
   @override
   State<BloodPressure> createState() => _BloodPressureState();

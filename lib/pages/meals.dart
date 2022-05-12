@@ -10,7 +10,7 @@ class _MealsState extends State<Meals> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(appBar: AppBar(backgroundColor:const Color(0xFF004B23)),
-      body:Text('meals')
+      body: const Text('meals')
     );
   }
 }

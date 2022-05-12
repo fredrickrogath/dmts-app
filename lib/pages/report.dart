@@ -1,7 +1,5 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:card_swiper/card_swiper.dart';
 
 class Report extends StatelessWidget {
   const Report({Key? key}) : super(key: key);
@@ -99,7 +97,7 @@ class Report extends StatelessWidget {
         ),
         body: TabBarView(
           physics:
-              AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+              const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
           children: [
             buildWeekly(cutOffYValue),
             buildWeekly(cutOffYValue),
