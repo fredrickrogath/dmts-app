@@ -47,8 +47,11 @@ class _HealthHistoryState extends State<HealthHistory> {
                         padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: const [
-                       Text('Period: Morning'), Text('Meals: Cereals'), Text('Exercise: jogging'),
+                          children:  [
+                            Row(children: const [Text('Period: ', style: TextStyle(fontWeight: FontWeight.w500)), Text('Morning')],),
+                            Row(children: const [Text('Meal: ', style: TextStyle(fontWeight: FontWeight.w500)), Text('Cereals')],),
+                            Row(children: const [Text('Exercise: ', style: TextStyle(fontWeight: FontWeight.w500)), Text('Jogging')],),
+                      //  Text('Period: Morning'), Text('Meals: Cereals'), Text('Exercise: jogging'),
                     ],),
                       ),
                     Row(mainAxisAlignment: MainAxisAlignment.spaceAround,children: const [
