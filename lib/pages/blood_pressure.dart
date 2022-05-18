@@ -53,11 +53,16 @@ class _BloodPressureState extends State<BloodPressure> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(right: 8.0),
-                      child: OutlinedButton(
+                      child: ElevatedButton(
                         // style: outlineButtonStyle,
+                        style: ElevatedButton.styleFrom(
+                          primary: const Color(0xFF004B23), // background
+                          // onPrimary: Colors.white, // foreground
+                        ),
                         onPressed: () {},
-                        child: const Text('Submit',
-                            style: TextStyle(color: Color(0xFF004B23))),
+                        child: const Text(
+                          'Submit',
+                        ),
                       ),
                     )
                   ],
