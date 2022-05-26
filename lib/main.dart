@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:dmts/health_history.dart';
 import 'package:dmts/homepage.dart';
 import 'package:dmts/kidney_ability.dart';
@@ -10,6 +12,7 @@ import 'package:flutter/rendering.dart';
 // import 'package:flutter_barcode_scanner/flutter_barcode_scanner.dart';
 // import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:avatar_glow/avatar_glow.dart';
 
 void main() {
   runApp(const MyApp());
@@ -53,6 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
   final ScrollController _scrollBottomBarController =
       ScrollController(); // set controller on scrolling
   bool isScrollingDown = false;
+  bool _animate = true;
   bool _show = true;
   double bottomBarHeight = 50; // set bottom bar height
 
@@ -117,15 +121,18 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     bool isDark = darkNotifier.value;
     return DefaultTabController(
+      animationDuration: const Duration(seconds: 1),
       length: 3,
       child: Scaffold(
+        backgroundColor:  Colors.white.withOpacity(0.8),
         appBar: _showAppbar
             ? AppBar(
                 toolbarHeight: 80.0,
-                backgroundColor: const Color(0xFF004B23),
+                // backgroundColor: const Color(0xFF004B23),
+                backgroundColor: Colors.white.withOpacity(0.5),
                 // centerTitle: true,
                 leading: const Padding(
-                  padding: EdgeInsets.only(left: 8.0),
+                  padding: EdgeInsets.only(left: 12.0),
                   child: CircleAvatar(
                     backgroundImage: AssetImage('assets/logo2.jpg'),
                   ),
@@ -141,44 +148,48 @@ class _MyHomePageState extends State<MyHomePage> {
                 //     )),
                 title: Text(
                   widget.title,
-                  style: const TextStyle(fontSize: 16.0),
+                  style: const TextStyle(fontSize: 16.0, color: Color(0xFF004B23)),
                 ),
                 bottom: PreferredSize(
-                    child: Opacity(
-                      opacity: 0.9,
-                      child: TabBar(
-                          isScrollable: true,
-                          unselectedLabelColor: Colors.white.withOpacity(0.3),
-                          indicatorColor: Colors.white,
-                          tabs: const [
-                            Tab(
-                              child: Text('Dashboard'),
-                            ),
-                            Tab(
-                              child: Text('Health History'),
-                            ),
-                            Tab(
-                              child: Text('Kidney Ability'),
-                            ),
-                          ]),
-                    ),
+                    child: TabBar(
+                        isScrollable: true,
+                        labelColor: const Color(0xFF004B23),
+                        unselectedLabelColor:
+                            const Color(0xFF004B23).withOpacity(0.6),
+                        indicatorColor: const Color(0xFF004B23),
+                        labelStyle: const TextStyle(
+                            fontSize: 13, fontWeight: FontWeight.bold),
+                        tabs: const [
+                          Tab(
+                            child: Text('Dashboard'),
+                          ),
+                          Tab(
+                            child: Text('Health History'),
+                          ),
+                          Tab(
+                            child: Text('Kidney Ability'),
+                          ),
+                        ]),
                     preferredSize: const Size.fromHeight(30.0)),
                 actions: [
-                  Padding(
-                    padding: const EdgeInsets.only(right: 16.0),
-                    child: IconButton(
-                      // icon: FaIcon(FontAwesomeIcons.mode_night_outlined),
-                      icon: Icon(isDark
-                          ? Icons.wb_sunny_outlined
-                          : Icons.mode_night_outlined),
-                      onPressed: () {
-                        isDark = !isDark;
-                        darkNotifier.value = isDark;
-                        setDarkMode(isDark);
-                        setState(() {});
-                      },
-                    ),
-                  ),
+                  // Padding(
+                  //   padding: const EdgeInsets.only(right: 16.0),
+                  //   child: IconButton(
+                  //     // icon: FaIcon(FontAwesomeIcons.mode_night_outlined),
+                  //     icon: Icon(
+                  //       isDark
+                  //           ? Icons.wb_sunny_outlined
+                  //           : Icons.mode_night_outlined,
+                  //       color: const Color(0xFF004B23),
+                  //     ),
+                  //     onPressed: () {
+                  //       isDark = !isDark;
+                  //       darkNotifier.value = isDark;
+                  //       setDarkMode(isDark);
+                  //       setState(() {});
+                  //     },
+                  //   ),
+                  // ),
                   Padding(
                     padding: const EdgeInsets.only(right: 16.0),
                     child: Row(
@@ -186,6 +197,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       children: const [
                         Icon(
                           CupertinoIcons.bell,
+                          color: Color(0xFF004B23),
                         ),
                         Icon(
                           CupertinoIcons.circle_fill,
@@ -202,13 +214,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 preferredSize: const Size(0.0, 0.0),
               ),
         body: const TabBarView(
-          physics:  AlwaysScrollableScrollPhysics(
-              parent: BouncingScrollPhysics()),
+          physics:
+              AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
           children: [
-             HomePage(),
+            HomePage(),
             // HomePage(),
             HealthHistory(),
-             KidneyAbility(),
+            KidneyAbility(),
           ],
         ),
         // floatingActionButton: _show

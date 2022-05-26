@@ -9,7 +9,19 @@ class HealthHistory extends StatefulWidget {
   State<HealthHistory> createState() => _HealthHistoryState();
 }
 
-class _HealthHistoryState extends State<HealthHistory> {
+class _HealthHistoryState extends State<HealthHistory>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 1),
+    vsync: this,
+  )..forward();
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   bool _show = false;
   int id = 0;
   String tip = '';
@@ -17,6 +29,7 @@ class _HealthHistoryState extends State<HealthHistory> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+        backgroundColor: Colors.white.withOpacity(0.3),
         body: ListView.builder(
             // controller: _scrollBottomBarController,
             padding: const EdgeInsets.all(0.0),
@@ -33,35 +46,101 @@ class _HealthHistoryState extends State<HealthHistory> {
                   // id = index;
                   // setState(() {});
                 },
-                child: Card(
-                  elevation: 1.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 10.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: [
-                      Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: Row(
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: Offset(0.0, index.toDouble()),
+                    end: Offset.zero,
+                  ).animate(CurvedAnimation(
+                    parent: _controller,
+                    curve: Curves.decelerate,
+                  )),
+                  child: Card(
+                    color: Colors.white.withOpacity(0.5),
+                    elevation: 1.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children:  [
-                            Row(children: const [Text('Period: ', style: TextStyle(fontWeight: FontWeight.w500)), Text('Morning')],),
-                            Row(children: const [Text('Meal: ', style: TextStyle(fontWeight: FontWeight.w500)), Text('Cereals')],),
-                            Row(children: const [Text('Exercise: ', style: TextStyle(fontWeight: FontWeight.w500)), Text('Jogging')],),
-                      //  Text('Period: Morning'), Text('Meals: Cereals'), Text('Exercise: jogging'),
-                    ],),
-                      ),
-                    Row(mainAxisAlignment: MainAxisAlignment.spaceAround,children: const [
-                      Text('Pressure: 100 mmHg'), Text('Glucose: 12'), 
-                    ],),
-                   const  Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Text('Date 2022-05-02'),
-                    )
-                    ],)
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: [
+                                  Row(
+                                    children: const [
+                                      Text('Period: ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                      Text('Morning')
+                                    ],
+                                  ),
+                                  Row(
+                                    children: const [
+                                      Text('Meal: ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                      Text('Cereals')
+                                    ],
+                                  ),
+                                  Row(
+                                    children: const [
+                                      Text('Exercise: ',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.w500)),
+                                      Text('Jogging')
+                                    ],
+                                  ),
+                                  //  Text('Period: Morning'), Text('Meals: Cereals'), Text('Exercise: jogging'),
+                                ],
+                              ),
+                            ),
+                            Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                // Text('Pressure: 100 mmHg'),
+
+                                RichText(
+                                  text: TextSpan(
+                                    text: '',
+                                    style: DefaultTextStyle.of(context).style,
+                                    children: const <TextSpan>[
+                                      TextSpan(
+                                          text: 'Pressure :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(text: ' 100 mmHg'),
+                                    ],
+                                  ),
+                                ),
+
+                                // Text('Glucose: 12'),
+
+                                RichText(
+                                  text: TextSpan(
+                                    text: '',
+                                    style: DefaultTextStyle.of(context).style,
+                                    children: const <TextSpan>[
+                                      TextSpan(
+                                          text: 'Glucose :',
+                                          style: TextStyle(
+                                              fontWeight: FontWeight.bold)),
+                                      TextSpan(text: ' 12'),
+                                    ],
+                                  ),
+                                )
+                              ],
+                            ),
+                             Padding(
+                              padding:const EdgeInsets.all(8.0),
+                              child: Text('Date 2022-05-02', style: DefaultTextStyle.of(context).style,),
+                            )
+                          ],
+                        )),
                   ),
                 ),
               );

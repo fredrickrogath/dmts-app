@@ -10,7 +10,21 @@ class KidneyAbility extends StatefulWidget {
   State<KidneyAbility> createState() => _KidneyAbilityState();
 }
 
-class _KidneyAbilityState extends State<KidneyAbility> {
+class _KidneyAbilityState extends State<KidneyAbility>
+    with TickerProviderStateMixin {
+  late final AnimationController _controller = AnimationController(
+    duration: const Duration(seconds: 1),
+    vsync: this,
+  )..forward();
+
+  bool animated = false;
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
   bool _show = false;
   int id = 0;
   String tip = '';
@@ -18,6 +32,7 @@ class _KidneyAbilityState extends State<KidneyAbility> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white.withOpacity(0.3),
         body: ListView.builder(
             // controller: _scrollBottomBarController,
             padding: const EdgeInsets.all(0.0),
@@ -34,54 +49,67 @@ class _KidneyAbilityState extends State<KidneyAbility> {
                   // id = index;
                   // setState(() {});
                 },
-                child: Card(
-                  elevation: 1.0,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(16.0),
-                  ),
-                  child: Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 10.0),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.spaceAround,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(0.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: const [
-                                Text('Results'),
-                                Text('Expected Range'),
-                              ],
+                child: SlideTransition(
+                  position: Tween<Offset>(
+                    begin: Offset(0.0, -index.toDouble()),
+                    end: Offset.zero,
+                  ).animate(CurvedAnimation(
+                    parent: _controller,
+                    curve: Curves.decelerate,
+                  )),
+                  child: Card(
+                    color: Colors.white.withOpacity(0.5),
+                    elevation: 1.0,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(16.0),
+                    ),
+                    child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 10.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: [
+                            Padding(
+                              padding: const EdgeInsets.all(0.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: const [
+                                  Text('Results'),
+                                  Text('Expected Range'),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: const [
-                                Text('Renal test: 1.3 mg/dL'),
-                                Text('1.2 mg/dL - 2.1 mg/dL'),
-                              ],
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Row(
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceAround,
+                                children: const [
+                                  Text('Renal test: 1.3 mg/dL'),
+                                  Text('1.2 mg/dL - 2.1 mg/dL'),
+                                ],
+                              ),
                             ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.all(2.0),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: const [
-                                Text('Date: 2022-05-02'),
-                                Padding(
-                                  padding: EdgeInsets.symmetric(horizontal:8.0),
-                                  child: Icon(
-                                    CupertinoIcons.arrow_up_circle_fill,
-                                    color: Colors.green,
+                            Padding(
+                              padding: const EdgeInsets.all(2.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: const [
+                                  Text('Date: 2022-05-02'),
+                                  Padding(
+                                    padding:
+                                        EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Icon(
+                                      CupertinoIcons.arrow_up_circle_fill,
+                                      color: Colors.green,
+                                    ),
                                   ),
-                                ),
-                              ],
+                                ],
+                              ),
                             ),
-                          ),
-                        ],
-                      )),
+                          ],
+                        )),
+                  ),
                 ),
               );
             }),
